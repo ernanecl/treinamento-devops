@@ -2,10 +2,6 @@ provider "aws" {
   region = "sa-east-1"
 }
 
-
-
-
-
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
@@ -22,16 +18,10 @@ resource "aws_instance" "web" {
     #delete_on_termination = true
   }
 
-
-
-
   tags = {
     Name = "Maquina para testar VPC - ernane"
   }
 }
-
-
-
 
 resource "aws_instance" "web2" {
   ami           = data.aws_ami.ubuntu.id
@@ -48,9 +38,6 @@ resource "aws_instance" "web2" {
     kms_key_id  = "ad51fbbd-816c-4ee5-a1bd-c9218b648507" #"f48a0432-3f72-4888-9b31-8bdf1c121a4c"
     #delete_on_termination = true
   }
-
-
-
 
   tags = {
     Name = "Maquina2 para testar VPC - ernane"

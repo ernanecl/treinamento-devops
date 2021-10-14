@@ -1,19 +1,19 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "sa-east-1"
 }
 
 resource "aws_instance" "web" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = "t3.micro"
-  key_name                = "Itau_treinamento" # key chave publica cadastrada na AWS 
+  instance_type           = "t2.micro"
+  key_name                = "key-dev-ernane-aws" # key chave publica cadastrada na AWS 
   subnet_id               =  aws_subnet.my_subnet.id # vincula a subnet direto e gera o IP automático
-  private_ip              = "172.17.0.100"
+  private_ip              = "192.168.10.30"
   vpc_security_group_ids  = [
     "${aws_security_group.allow_ssh_terraform.id}",
   ]
 
   tags = {
-    Name = "Maquina para testar VPC do terraform"
+    Name = "Maquina para testar VPC do terraform - ernane"
   }
 }
 

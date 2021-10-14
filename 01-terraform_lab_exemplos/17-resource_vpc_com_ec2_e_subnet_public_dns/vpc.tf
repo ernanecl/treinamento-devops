@@ -1,19 +1,19 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "172.17.0.0/16"
+  cidr_block = "192.168.10.0/24"
   enable_dns_hostnames = true
 
   tags = {
-    Name = "TerraformVPCPublicSubnet"
+    Name = "TerraformVPCErnane"
   }
 }
 
 resource "aws_subnet" "my_subnet" {
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "172.17.0.0/16"
-  availability_zone = "us-east-1a"
+  cidr_block        = "192.168.10.0/27"
+  availability_zone = "sa-east-1a"
 
   tags = {
-    Name = "tf-lab-danilo-subnet"
+    Name = "tf-lab-ernane-subnet"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.my_vpc.id
 
   tags = {
-    Name = "aws_internet_gateway_terraform"
+    Name = "aws_internet_gateway_terraform_ernane"
   }
 }
 
@@ -31,7 +31,7 @@ resource "aws_route_table" "rt_terraform" {
   route = [
       {
         carrier_gateway_id         = ""
-        cidr_block                 = "0.0.0.0/0"
+        cidr_block                 = "192.168.10.0/24"
         destination_prefix_list_id = ""
         egress_only_gateway_id     = ""
         gateway_id                 = aws_internet_gateway.gw.id
@@ -47,7 +47,7 @@ resource "aws_route_table" "rt_terraform" {
   ]
 
   tags = {
-    Name = "route_table_terraform"
+    Name = "route_table_terraform_ernane"
   }
 }
 
