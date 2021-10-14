@@ -12,8 +12,16 @@ resource "aws_instance" "web" {
     "${aws_security_group.allow_ssh_terraform.id}",
   ]
 
+  root_block_device {
+    volume_size = "8"
+    volume_type = "gp2"
+    encrypted = true
+    kms_key_id = "ad51fbbd-816c-4ee5-a1bd-c9218b648507"
+    #delete_on_termination = true
+  }
+  
   tags = {
-    Name = "Maquina para testar VPC do terraform - ernane"
+    Name = "Maquina para teste VPC do terraform - ernane"
   }
 }
 
