@@ -9,7 +9,7 @@ resource "aws_vpc" "my_vpc" {
 
 resource "aws_subnet" "my_subnet" {
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "192.168.10.0/27"
+  cidr_block        = "192.168.10.0/24"
   availability_zone = "sa-east-1a"
 
   tags = {
@@ -31,7 +31,7 @@ resource "aws_route_table" "rt_terraform" {
   route = [
       {
         carrier_gateway_id         = ""
-        cidr_block                 = "192.168.10.0/24"
+        cidr_block                 = "0.0.0.0/0"
         destination_prefix_list_id = ""
         egress_only_gateway_id     = ""
         gateway_id                 = aws_internet_gateway.gw.id
