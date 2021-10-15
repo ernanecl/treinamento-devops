@@ -5,11 +5,10 @@ provider "aws" {
 resource "aws_instance" "web" {
   ami           = "ami-054a31f1b3bf90920"
   instance_type = "t2.micro"
-  key_name      = "key-dev-ernane-aws"                # key chave publica cadastrada na AWS
-
-  subnet_id     = aws_subnet.my_subnet_c.id # vincula a subnet direto e gera o IP automático
-  # private_ip = "10.16.0.101"
-  # vpc_security_group_ids = ["${aws_security_group.allow_ssh1.id}"]
+  key_name      = "key-dev-ernane-aws"      # key chave publica cadastrada na AWS
+  subnet_id     = aws_subnet.my_subnet.id   # vincula a subnet direto e gera o IP automático
+  associate_public_ip_address = true
+  security_groups             = [aws_security_group.allow_port.id]
 
   root_block_device {
     volume_size = "8"
