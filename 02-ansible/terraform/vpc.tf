@@ -1,5 +1,5 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.1.0/23"
+  cidr_block = "10.0.1.0/24"
 
   tags = {
     Name = "tf-ansible-ernane-vpc"
