@@ -13,3 +13,7 @@ variable "random_host_subnet" {
   default = "Host subnet number"
 }
 
+variable "availability_zone" {
+  type = "string"
+  default = ["a","b","c"]
+}

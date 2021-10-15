@@ -10,7 +10,7 @@ resource "aws_instance" "web" {
     ami                     = data.aws_ami.ubuntu.id
     key_name                = "key-dev-ernane-aws" # key chave publica cadastrada na AWS 
     subnet_id               =  aws_subnet.my_subnet_1a.id # vincula a subnet direto e gera o IP automático
-    private_ip              = "192.168.10.30"
+    private_ip              = "192.168.0.30"
     vpc_security_group_ids  = [
       "${aws_security_group.allow_ssh_terraform.id}",
     ]
