@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow_port" {
-  name        = "ansible_terraform_ernane"
+  name        = "allow_ssh_ansible"
   description = "Allow SSH inbound traffic for work with Ansible and Terraform"
   vpc_id      = aws_vpc.my_vpc.id
 
@@ -8,6 +8,18 @@ resource "aws_security_group" "allow_port" {
       description      = "SSH from VPC"
       from_port        = 22
       to_port          = 22
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids  = null,
+      security_groups  = null,
+      self             = null
+    },
+
+    {
+      description      = "SSH from VPC"
+      from_port        = 80
+      to_port          = 80
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
@@ -32,6 +44,6 @@ resource "aws_security_group" "allow_port" {
   ]
 
   tags = {
-    Name = "allow_ssh_ernane"
+    Name = "allow_ssh_ansible"
   }
 }

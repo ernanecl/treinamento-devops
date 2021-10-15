@@ -18,24 +18,7 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name = "Ansible and Terraform - Ernane"
+    Name = "ec2-tf-ansible-ernane"
   }
 }
 
-resource "aws_eip" "example" {
-  vpc = true
-}
-
-resource "aws_eip_association" "eip_assoc" {
-  instance_id   = aws_instance.web.id
-  allocation_id = aws_eip.example.id
-}
-
-# terraform refresh para mostrar o ssh
-
-output "aws_instance_e_ssh" {
-  value = [
-    aws_instance.web.public_ip,
-    "ssh -i id_rsa_itau_treinamento ubuntu@${aws_instance.web.public_dns}"
-  ]
-}
