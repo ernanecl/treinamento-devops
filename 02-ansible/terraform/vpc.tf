@@ -1,9 +1,9 @@
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.1.0/24"
 
-  tags = {
-    Name = "tf-ansible-ernane-vpc"
-  }
+  #tags = {
+  # Name = "vpc-ernane-main"
+  #}
 }
 
 resource "aws_subnet" "my_subnet" {
@@ -11,7 +11,7 @@ resource "aws_subnet" "my_subnet" {
   cidr_block        = "10.0.1.128/25"
   availability_zone = "sa-east-1c"
 
-  tags = {
-    Name = "ansible-ernane-subnet"
-  }
+  #  tags = {
+  #   Name = "sub1c-vpc-ernane"
+  #}
 }

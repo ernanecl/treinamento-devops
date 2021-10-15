@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_port" {
-	  name        = "ansible_terraform_ernane"
-	  description = "Allow SSH inbound traffic for work with Ansible and Terraform"
-    vpc_id = aws_vpc.my_vpc.id
+  name        = "ansible_terraform_ernane"
+  description = "Allow SSH inbound traffic for work with Ansible and Terraform"
+  vpc_id      = aws_vpc.my_vpc.id
 
   ingress = [
     {
@@ -11,9 +11,9 @@ resource "aws_security_group" "allow_port" {
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
-      prefix_list_ids = null,
-      security_groups = null,
-      self            = null
+      prefix_list_ids  = null,
+      security_groups  = null,
+      self             = null
     }
   ]
 

@@ -1,12 +1,12 @@
 provider "aws" {
-    region = "sa-east-1"
+  region = "sa-east-1"
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-054a31f1b3bf90920"
-  instance_type = "t2.micro"
-  key_name      = "key-dev-ernane-aws"      # key chave publica cadastrada na AWS
-  subnet_id     = aws_subnet.my_subnet.id   # vincula a subnet direto e gera o IP automático
+  ami                         = "ami-054a31f1b3bf90920"
+  instance_type               = "t2.micro"
+  key_name                    = "key-dev-ernane-aws"    # key chave publica cadastrada na AWS
+  subnet_id                   = aws_subnet.my_subnet.id # vincula a subnet direto e gera o IP automático
   associate_public_ip_address = true
   security_groups             = [aws_security_group.allow_port.id]
 
