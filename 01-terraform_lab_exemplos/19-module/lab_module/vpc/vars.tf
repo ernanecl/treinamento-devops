@@ -1,4 +1,9 @@
-variable cidr_block {
+variable "nome" {
+  type = string
+  description = "nome vpc"
+}
+
+variable "cidr_block" {
     type = string
     description = "VPC Name"
 }
@@ -14,6 +19,6 @@ variable "random_host_subnet" {
 }
 
 variable "availability_zone" {
-  type = "string"
+  type = list(string)
   default = ["a","b","c"]
 }

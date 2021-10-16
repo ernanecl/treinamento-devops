@@ -6,7 +6,7 @@ resource "aws_subnet" "my_subnet" {
   availability_zone = "sa-east-1${substr(var.availability_zone)}"
 
   tags = {
-    Name = "lab-ernane-subnet-${count.index}"
+    Name = "${var.nome}-${count.index}"
   }
 }
 

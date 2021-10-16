@@ -25,6 +25,6 @@ resource "aws_instance" "web" {
   }
   
   tags = {
-    Name = "instance_module_ernane"
+     Name = "${var.nome}-${each.value}"
   }
 }
