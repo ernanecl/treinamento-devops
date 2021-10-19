@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "sa-east-1"
 }
 
 data "http" "myip" {
@@ -8,7 +8,7 @@ data "http" "myip" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners = ["099720109477"] # ou ["099720109477"] ID master com permissão para busca
+  # owners = ["099720109477"] # ou ["099720109477"] ID master com permissão para busca
 
   filter {
     name   = "name"
@@ -19,9 +19,9 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "maquina_master" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.medium"
-  key_name      = "Itau_treinamento"
+  key_name      = "key-dev-ernane-aws"
   tags = {
-    Name = "maquina-cluster-kubernetes-master"
+    Name = "cluster-kubernetes-master"
   }
   vpc_security_group_ids = ["${aws_security_group.acessos_master.id}"]
   depends_on = [
@@ -32,9 +32,9 @@ resource "aws_instance" "maquina_master" {
 resource "aws_instance" "workers" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
-  key_name      = "Itau_treinamento"
+  key_name      = "key-dev-ernane-aws"
   tags = {
-    Name = "maquina-cluster-kubernetes-${count.index}"
+    Name = "cluster-kubernetes-worker-${count.index}"
   }
   vpc_security_group_ids = ["${aws_security_group.acessos_workers.id}"]
   count         = 2
@@ -44,6 +44,7 @@ resource "aws_instance" "workers" {
 resource "aws_security_group" "acessos_master" {
   name        = "acessos_master"
   description = "acessos_workers inbound traffic"
+  vpc_id = ""
 
   ingress = [
     {
@@ -97,6 +98,7 @@ resource "aws_security_group" "acessos_master" {
 resource "aws_security_group" "acessos_workers" {
   name        = "acessos_workers"
   description = "acessos_workers inbound traffic"
+  vpc_id = ""
 
   ingress = [
     {
